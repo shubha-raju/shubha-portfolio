@@ -1,237 +1,266 @@
 import { useState } from 'react';
-import {
-  ArrowUpRight,
-  ChevronDown,
-  Linkedin,
-  Menu,
-  MoveUpRight,
-  X,
-} from 'lucide-react';
+import { ArrowUpRight, Linkedin, Menu, X } from 'lucide-react';
+
+const navItems = [
+  { href: '#about', label: 'About' },
+  { href: '#what', label: 'What I bring' },
+  { href: '#built', label: "What I've built" },
+  { href: '#experience', label: 'Experience' },
+  { href: '#contact', label: 'Start a conversation' },
+];
+
+const stats = [
+  { value: '$300K → $20M', label: 'Enterprise pilot grown into a managed service over two years' },
+  { value: '250+', label: 'Marketing analytics practice built and scaled' },
+  { value: '$30M', label: 'Annual P&L responsibility' },
+  { value: '$7–8M', label: 'Projected annual savings identified in a GenAI content supply-chain pilot' },
+];
 
 const capabilities = [
   {
     number: '01',
-    title: 'Commercial strategy',
+    title: 'AI-native marketing operating model',
     description:
-      'Turn ambitious growth targets into a focused operating model, value story, and path to market that leadership can fund and teams can execute.',
-    tags: ['Growth architecture', 'Value articulation', 'Go-to-market'],
+      'I design it from the output backwards and implement it end to end. Humans set the goals and guardrails, specialist agents generate, evaluate and act in a continuous loop, and real market signals feed learning. The commercial model is built in.',
+    proof:
+      'Developing an AI-native marketing operating model at MediaMint; led a GenAI content supply chain pilot (OpenAI + Adobe) that identified $7–8M in annual savings; built a 40% TCO-reduction value story for AI operations.',
+    tags: ['Operating model design', 'Human-in-the-loop AI', 'Continuous learning', 'Commercial model'],
   },
   {
     number: '02',
-    title: 'AI transformation',
+    title: 'AI-powered marketing transformation',
     description:
-      'Move beyond pilots. Design the governance, workflows, and capability needed to make AI useful, trusted, and measurable across the business.',
-    tags: ['AI operating models', 'Adoption', 'Responsible scale'],
+      'Design and lead modern marketing operating models that combine AI, content, customer data, measurement, and automation. I connect the roadmap to real workflows, implementation ownership, and performance outcomes.',
+    proof:
+      "Embedded delivery lead for a global search leader's product marketing organization, scaling the team from 7 to 100+; grew a 250+ person analytics practice; led DAM (Aprimo) and CMS implementations.",
+    tags: ['Adobe Experience Cloud', 'Salesforce', 'Aprimo DAM', 'AEM', 'HubSpot', 'Experimentation'],
   },
   {
     number: '03',
-    title: 'Enterprise pursuit',
+    title: 'Strategy and go-to-market',
     description:
-      'Make complex propositions matter to decision-makers — from the first signal to the final proposal, with a narrative built around business outcomes.',
-    tags: ['RFP leadership', 'C-suite narrative', 'Account expansion'],
+      'Consulting from first question to funded plan: strategy, AI roadmaps and implementation plans, plus go-to-market support and client partnership for the teams who take it to market.',
+    proof:
+      "Built the AI advertising go-to-market strategy for Deloitte's Customer practice; lead go-to-market and 8+ enterprise proposals at MediaMint; $300K pilot grown into a $20M managed service.",
+    tags: ['Strategy', 'AI roadmaps', 'Implementation planning', 'GTM support', 'Client partnership'],
   },
 ];
 
-const outcomes = [
+const products = [
   {
-    year: '2025 — now',
-    role: 'Client Partner, Large Account Sales & AI Strategy',
-    company: 'MediaMint',
-    detail:
-      'Leading concurrent enterprise relationships, new-business origination, and AI strategy across the commercial portfolio.',
+    title: 'AI Visibility Snapshot and GEO Audit',
+    description:
+      'Tests how ChatGPT, Claude and Gemini describe a brand, scores its AI visibility, checks technical readiness, and produces a prioritized action plan.',
+    status: 'Live now. Request a snapshot and get your insights back within 1 working day.',
+    cta: 'Request your snapshot',
+    tags: ['AEO', 'GEO', 'AI search'],
   },
   {
-    year: '2023 — 2024',
+    title: 'AI proposal agent system',
+    description: 'Seven specialist AI agents that draft, solution, price and design enterprise proposals.',
+    status: 'Cuts proposal time by 80%.',
+    tags: ['Agentic AI', 'Proposal automation'],
+  },
+  {
+    title: 'AI marketing operations agents',
+    description: 'Agents that automate business rules, campaign analytics and reporting inside marketing operations.',
+    status: 'End-to-end campaign operations with 70% cost savings.',
+    tags: ['Agents', 'Marketing ops automation'],
+  },
+];
+
+const experience = [
+  {
+    period: '2025 – present',
+    role: 'Advisory, Large Account & AI Strategy',
+    company: 'MediaMint',
+    detail:
+      'Enterprise go-to-market, strategic proposals, AI-led operations solutions, and operating-model development for technology and media clients.',
+  },
+  {
+    period: '2023 – 2024',
     role: 'Senior Account Manager, Marketing & Advertising',
     company: 'Deloitte',
     detail:
-      'Led multi-stakeholder pursuits and built the Generative AI content supply chain pilot for a global technology client.',
+      'Led GenAI content supply-chain and marketing transformation engagements, Salesforce marketing operations work, and AI advertising go-to-market strategy.',
   },
   {
-    year: '2007 — 2022',
+    period: '2007 – 2022',
     role: 'VP, Client Services — Marketing Transformation',
     company: 'Accenture',
     detail:
-      'Grew a $300K digital campaign into a $20M managed service and built a 250+ person marketing analytics practice.',
+      'Account lead, delivery lead and practice lead. Built marketing analytics and operations capabilities; led strategic client relationships, global delivery, managed services growth, and P&L.',
   },
 ];
 
-const principles = [
-  'Start with the business outcome, not the tool.',
-  'Make the complex clear enough to act on.',
-  'Build capability, not dependency.',
+const faq = [
+  {
+    q: 'Who is Shubha Raju?',
+    a: 'Shubha Raju is a Canada-based AI transformation and marketing operations leader with 18+ years of experience across Accenture, Deloitte, and MediaMint.',
+  },
+  {
+    q: 'What does Shubha Raju specialize in?',
+    a: 'AI-powered marketing operating models, enterprise AI roadmaps and implementation, marketing platforms and analytics, strategic account growth, and building global delivery organizations.',
+  },
+  {
+    q: 'What outcomes has she led?',
+    a: 'Scaling a $300K pilot into a $20M managed service, building a 250+ person analytics practice, holding $30M annual P&L responsibility, and leading a GenAI content pilot that identified $7–8M in projected annual savings.',
+  },
+  {
+    q: 'How can I contact Shubha Raju?',
+    a: 'By email at shubha2020@gmail.com or on LinkedIn at linkedin.com/in/shubha-raju.',
+  },
 ];
 
-function App() {
+export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const closeMenu = () => setMenuOpen(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className="site-shell">
-      <header className="site-header">
-        <a className="brand" href="#top" onClick={closeMenu} aria-label="Shubha Raju home">
-          <span className="brand-mark">SR</span>
-          <span className="brand-name">Shubha Raju</span>
-        </a>
-
-        <button
-          className="menu-toggle"
-          type="button"
-          onClick={() => setMenuOpen((open) => !open)}
-          aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
-          aria-expanded={menuOpen}
-        >
-          {menuOpen ? <X size={21} /> : <Menu size={21} />}
+    <div className="site" id="top">
+      <header className="nav">
+        <a href="#top" className="brand">SR</a>
+        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
-
-        <nav className={`main-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
-          <a href="#perspective" onClick={closeMenu}>Perspective</a>
-          <a href="#capabilities" onClick={closeMenu}>Capabilities</a>
-          <a href="#experience" onClick={closeMenu}>Experience</a>
-          <a href="#contact" onClick={closeMenu} className="nav-cta">
-            Start a conversation <ArrowUpRight size={16} />
-          </a>
+        <nav className={menuOpen ? 'nav-links open' : 'nav-links'}>
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
+              {item.label}
+            </a>
+          ))}
         </nav>
       </header>
 
-      <main id="top">
-        <section className="hero section-wrap">
-          <div className="hero-copy">
-            <div className="eyebrow"><span /> Commercial strategy × AI transformation</div>
-            <h1>I build the commercial systems that make <em>AI matter.</em></h1>
-            <p className="hero-intro">
-              I help ambitious organizations turn strategy into momentum — shaping the proposition,
-              winning the room, and building the operating model to scale what works.
-            </p>
-            <div className="hero-actions">
-              <a className="button button-primary" href="https://calendly.com/shubha2020" target="_blank" rel="noreferrer">
-                Book a growth diagnostic <ArrowUpRight size={17} />
-              </a>
-              <a className="text-link" href="#perspective">Explore the thinking <ChevronDown size={16} /></a>
+      <section className="hero">
+        <p className="eyebrow">AI-native marketing operations</p>
+        <h1>
+          I build AI-native marketing operating models, <em>end to end.</em>
+        </h1>
+        <p className="lead">
+          For 18+ years I've helped product marketing teams at the world's leading search company and other top
+          technology platforms run marketing operations at scale. Today I design and implement AI-native marketing
+          operating models end to end: the strategy and roadmap, the platforms and workflows, the people and
+          governance, with the commercial model built in.
+        </p>
+        <div className="actions">
+          <a className="button primary" href="#contact">Start a conversation <ArrowUpRight size={16} /></a>
+          <a className="button" href="#built">See what I've built</a>
+        </div>
+        <div className="stats">
+          {stats.map((s) => (
+            <div key={s.value} className="proof-item">
+              <strong>{s.value}</strong>
+              <span>{s.label}</span>
             </div>
-          </div>
+          ))}
+        </div>
+      </section>
 
-          <div className="hero-art" aria-label="Abstract graphic representing strategy, signal and scale">
-            <div className="art-orbit orbit-one" />
-            <div className="art-orbit orbit-two" />
-            <div className="art-core"><span>AI</span><small>×</small><span>GROWTH</span></div>
-            <div className="art-label label-top">Strategy</div>
-            <div className="art-label label-right">Signal</div>
-            <div className="art-label label-bottom">Scale</div>
-            <div className="art-dot dot-one" />
-            <div className="art-dot dot-two" />
-            <div className="art-dot dot-three" />
-          </div>
-        </section>
+      <section id="about" className="section">
+        <p className="eyebrow">About</p>
+        <h2>Strategy matters. <em>Making it work matters more.</em></h2>
+        <p>
+          I'm Shubha Raju, an AI transformation and marketing operations leader based in Vancouver, Canada, and
+          available to work and travel anywhere in North America. My career has moved between client leadership,
+          consulting, delivery, and building businesses, often at the same time.
+        </p>
+        <p>
+          At Accenture, I helped scale enterprise marketing and analytics services, including growing a $300K pilot
+          with a global search leader into a $20M managed service and growing a 250+ person analytics practice. At
+          Deloitte, I led work spanning GenAI-enabled content operations and enterprise marketing transformation. More
+          recently, at MediaMint, my focus has included enterprise go-to-market, AI-led operating models, and turning
+          emerging capabilities into practical client solutions.
+        </p>
+        <p>
+          What connects the work is a belief that transformation is not a strategy deck or a technology deployment. It
+          is a new way of operating, one that connects commercial priorities, technology, people, governance, and
+          results. I'm a specialist who builds: deep in marketing operations and AI, and hands-on enough to prove ideas
+          in working systems.
+        </p>
+      </section>
 
-        <section className="proof-strip" aria-label="Selected results">
-          <div className="proof-item"><strong>$60M+</strong><span>revenue generated across<br />Fortune 100 accounts</span></div>
-          <div className="proof-item"><strong>$300K → $20M</strong><span>single account grown into<br />a managed service</span></div>
-          <div className="proof-item"><strong>18+ years</strong><span>of enterprise transformation<br />and growth leadership</span></div>
-          <div className="proof-item"><strong>600+</strong><span>people led across<br />global engagements</span></div>
-        </section>
-
-        <section className="perspective section-wrap" id="perspective">
-          <div className="section-kicker">The perspective</div>
-          <div className="perspective-grid">
-            <h2>The gap between an AI ambition and an <span>AI advantage</span> is commercial.</h2>
-            <div className="perspective-copy">
-              <p>
-                Most organizations do not need another strategy deck or disconnected tool. They need a clear
-                answer to the question: <strong>what changes in the business on Monday?</strong>
-              </p>
-              <p>
-                My work sits at that intersection — where customer reality, leadership priorities, technology,
-                and execution meet. I make the case for change, then help teams deliver it.
-              </p>
-              <a className="arrow-link" href="https://transperience.ai/" target="_blank" rel="noreferrer">
-                Explore Transperience.ai <MoveUpRight size={17} />
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section className="capabilities section-wrap" id="capabilities">
-          <div className="section-heading">
-            <div className="section-kicker">What I do</div>
-            <h2>From the first<br /><span>signal</span> to scale.</h2>
-            <p>Senior counsel for leaders navigating their next stage of growth.</p>
-          </div>
-          <div className="capability-list">
-            {capabilities.map((item) => (
-              <article className="capability-card" key={item.number}>
-                <div className="card-topline"><span>{item.number}</span><ArrowUpRight size={19} /></div>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-                <div className="tag-list">
-                  {item.tags.map((tag) => <span key={tag}>{tag}</span>)}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="experience section-wrap" id="experience">
-          <div className="experience-heading">
-            <div className="section-kicker">The track record</div>
-            <h2>Enterprise scale.<br /><span>Measurable outcomes.</span></h2>
-          </div>
-          <div className="experience-content">
-            <p className="experience-lede">The same playbooks used with Fortune 50 clients, applied to the growth challenges in front of you.</p>
-            <div className="timeline">
-              {outcomes.map((outcome) => (
-                <article className="timeline-item" key={outcome.year}>
-                  <div className="timeline-year">{outcome.year}</div>
-                  <div className="timeline-marker" />
-                  <div className="timeline-detail">
-                    <h3>{outcome.role}</h3>
-                    <div className="timeline-company">{outcome.company}</div>
-                    <p>{outcome.detail}</p>
-                  </div>
-                </article>
+      <section id="what" className="section">
+        <p className="eyebrow">What I bring</p>
+        <h2>From the first signal <em>to scale.</em></h2>
+        {capabilities.map((c) => (
+          <article key={c.number} className="card">
+            <span className="number">{c.number}</span>
+            <h3>{c.title}</h3>
+            <p>{c.description}</p>
+            <p className="proof"><strong>Proof:</strong> {c.proof}</p>
+            <div className="tags">
+              {c.tags.map((t) => (
+                <span key={t} className="tag">{t}</span>
               ))}
             </div>
-          </div>
-        </section>
+          </article>
+        ))}
+      </section>
 
-        <section className="beliefs section-wrap">
-          <div className="beliefs-quote">“</div>
-          <div>
-            <div className="section-kicker">A working philosophy</div>
-            <blockquote>It is no longer about automating tasks. The next competitive edge is building an <em>autonomous growth engine</em> — while humans stay focused on strategy.</blockquote>
-            <div className="principles">
-              {principles.map((principle, index) => (
-                <div className="principle" key={principle}><span>0{index + 1}</span>{principle}</div>
+      <section id="built" className="section">
+        <p className="eyebrow">Products I've built</p>
+        <h2>Not just advisory. <em>I build and prove.</em></h2>
+        {products.map((p) => (
+          <article key={p.title} className="card">
+            <h3>{p.title}</h3>
+            <p>{p.description}</p>
+            <p className="status">{p.status}</p>
+            <div className="tags">
+              {p.tags.map((t) => (
+                <span key={t} className="tag">{t}</span>
               ))}
             </div>
-          </div>
-        </section>
+            {p.cta && (
+              <a className="button primary" href="#contact">{p.cta} <ArrowUpRight size={16} /></a>
+            )}
+          </article>
+        ))}
+      </section>
 
-        <section className="contact section-wrap" id="contact">
-          <div className="contact-inner">
-            <div className="section-kicker">Let’s make the next move</div>
-            <h2>Find the one lever<br /><em>that moves your revenue.</em></h2>
-            <p>Bring the ambition, the hard problem, or the half-formed idea. We’ll find the clearest place to start.</p>
-            <a className="button button-light" href="https://calendly.com/shubha2020" target="_blank" rel="noreferrer">
-              Book a 30-minute diagnostic <ArrowUpRight size={17} />
-            </a>
-          </div>
-          <div className="contact-meta">
-            <a href="mailto:shubha2020@gmail.com">shubha2020@gmail.com</a>
-            <a href="https://www.linkedin.com/in/shubha-raju/" target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a>
-            <span>North Vancouver · Canada</span>
-          </div>
-        </section>
-      </main>
+      <section id="experience" className="section">
+        <p className="eyebrow">Experience</p>
+        <h2>Enterprise scale. <em>Measurable outcomes.</em></h2>
+        <p>18+ years with Fortune 100 brands across technology, communications, media, retail and life sciences.</p>
+        {experience.map((e) => (
+          <article key={e.company} className="card">
+            <p className="period">{e.period}</p>
+            <h3>{e.role}</h3>
+            <p className="company">{e.company}</p>
+            <p>{e.detail}</p>
+          </article>
+        ))}
+      </section>
 
-      <footer className="site-footer section-wrap">
-        <span>© {new Date().getFullYear()} Shubha Raju</span>
-        <span>Commercial strategy × AI transformation</span>
+      <section className="section">
+        <p className="eyebrow">FAQ</p>
+        <h2>About <em>Shubha Raju</em></h2>
+        {faq.map((f, i) => (
+          <div key={f.q} className="faq-item">
+            <button className="faq-q" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+              {f.q}
+            </button>
+            {openFaq === i && <p>{f.a}</p>}
+          </div>
+        ))}
+      </section>
+
+      <section id="contact" className="section contact">
+        <h2>Building an AI-native marketing engine? <em>Let's talk.</em></h2>
+        <p>I'm always glad to talk with leaders shaping how AI and marketing work together, about leadership roles, speaking, or collaboration.</p>
+        <div className="actions">
+          <a className="button primary" href="mailto:shubha2020@gmail.com">Email me <ArrowUpRight size={16} /></a>
+          <a className="button" href="https://www.linkedin.com/in/shubha-raju/" target="_blank" rel="noreferrer">
+            <Linkedin size={16} /> LinkedIn
+          </a>
+        </div>
+        <p className="muted">Vancouver, Canada · Available across North America</p>
+      </section>
+
+      <footer className="footer">
+        <span>© 2026 Shubha Raju</span>
         <a href="#top">Back to top ↑</a>
       </footer>
     </div>
   );
 }
-
-export default App;
