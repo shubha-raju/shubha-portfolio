@@ -72,7 +72,7 @@ const products = [
 const experience = [
   {
     period: '2025 – present',
-    role: 'Advisory, Large Account & AI Strategy',
+    role: 'Advisory, Large Account Sales and AI Strategy',
     company: 'MediaMint',
     detail:
       'Enterprise go-to-market, strategic proposals, AI-led operations solutions, and operating-model development for technology and media clients.',
