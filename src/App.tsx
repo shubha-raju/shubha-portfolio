@@ -33,7 +33,7 @@ const capabilities = [
       'Design and lead modern marketing operating models that combine AI, content, customer data, measurement, and automation. I connect the roadmap to real workflows, implementation ownership, and performance outcomes.',
     proof:
       "Embedded delivery lead for a global search leader's product marketing organization, scaling the team from 7 to 100+; grew a 250+ person analytics practice; led DAM (Aprimo) and CMS implementations.",
-    tags: ['Adobe Experience Cloud', 'Salesforce', 'Aprimo DAM', 'AEM', 'HubSpot', 'Experimentation'],
+    tags: ['Adobe Experience Cloud', 'Marketo', 'Salesforce', 'Aprimo DAM', 'AEM', 'HubSpot', 'Customer data platform', 'Experimentation'],
   },
   {
     number: '03',
@@ -79,7 +79,7 @@ const experience = [
   },
   {
     period: '2023 – 2024',
-    role: 'Senior Account Manager, Marketing & Advertising',
+    role: 'Senior Manager, Marketing and Applied Design',
     company: 'Deloitte',
     detail:
       'Led GenAI content supply-chain and marketing transformation engagements, Salesforce marketing operations work, and AI advertising go-to-market strategy.',
